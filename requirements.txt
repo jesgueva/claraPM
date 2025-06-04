@@ -1,0 +1,12 @@
+uvicorn==0.34.3
+fastapi==0.115.12
+pydantic==2.11.5
+py_trees==2.3.0
+redis==6.2.0
+sqlalchemy==2.0.41
+json_log_formatter==1.1.1
+langchain==0.3.25
+openai==1.84.0
+sqlite4==0.1.1
+jinja2
+python-dotenv
