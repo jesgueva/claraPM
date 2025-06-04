@@ -21,6 +21,7 @@ function App() {
     } else {
       setConversation([{ type: 'ai', content: data.response.content }]);
     }
+    setInputText(''); // Clear the input box after the request is sent
   };
 
   return (
