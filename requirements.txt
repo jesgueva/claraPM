@@ -10,3 +10,10 @@ openai==1.84.0
 sqlite4==0.1.1
 jinja2
 python-dotenv
+python-jose==3.3.0
+passlib==1.7.4
+python-multipart==0.0.9
+pytest==8.4.0
+colorama==0.4.6
+bcrypt==4.1.2
+requests==2.31.0

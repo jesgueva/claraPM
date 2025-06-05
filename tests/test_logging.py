@@ -3,11 +3,16 @@
 Test script to verify that all loggers are correctly writing to their respective log files.
 """
 
-from intake_agent.logger import db_logger, conversation_logger, agent_logger, system_logger
-import logging
 import os
+import sys
 import time
 import re
+
+# Add the parent directory to the path so we can import the intake_agent module
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from intake_agent.logger import db_logger, conversation_logger, agent_logger, system_logger
+import logging
 
 def test_all_loggers():
     """Test all loggers to ensure they're writing to files without duplication."""

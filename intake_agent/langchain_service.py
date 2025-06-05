@@ -37,8 +37,19 @@ checkpointer = InMemorySaver()
 from .system_prompt import system_prompt
 
 # Function to save tasks to the database
-def save_tasks_to_db(tasks):
-    """Save a list of tasks to the database using the create_task function."""
+def save_tasks_to_db(tasks, username=None, config=None):
+    """
+    Save a list of tasks to the database using the create_task function.
+    
+    Args:
+        tasks: List of task dictionaries to save
+        username: Optional username of the current user, used for created_by if not specified
+        config: Configuration passed from agent, may contain username
+    """
+    # Extract username from config if provided
+    if not username and config and 'username' in config:
+        username = config['username']
+    
     db = SessionLocal()
     try:
         # Validate that we received a list
@@ -49,9 +60,9 @@ def save_tasks_to_db(tasks):
             
         for i, task in enumerate(tasks):
             try:
-                # Verify required fields are present
+                # Verify required fields are present (except created_by which can be set from username)
                 required_fields = ['title', 'description', 'user_id', 'project_id', 
-                                  'priority', 'role_required', 'created_by']
+                                  'priority', 'role_required']
                 missing_fields = [field for field in required_fields if field not in task]
                 
                 if missing_fields:
@@ -59,6 +70,14 @@ def save_tasks_to_db(tasks):
                     db_logger.error(f"Task {i+1}: {error_msg}")
                     raise KeyError(error_msg)
                 
+                # Set created_by to username if not specified in task
+                if 'created_by' not in task or not task['created_by']:
+                    if username:
+                        task['created_by'] = username
+                        db_logger.info(f"Setting created_by to current user: {username}")
+                    else:
+                        task['created_by'] = 'system'
+                        
                 # Convert deadline string to datetime object if it exists
                 deadline = None
                 if 'deadline' in task and task['deadline']:
@@ -86,7 +105,7 @@ def save_tasks_to_db(tasks):
             except KeyError as ke:
                 db_logger.error(f"Error in task {i+1}: {ke}")
                 db_logger.error(f"Task data: {task}")
-                db_logger.error("Tasks must follow the required format with fields: title, description, user_id, project_id, priority, role_required, created_by")
+                db_logger.error("Tasks must follow the required format with fields: title, description, user_id, project_id, priority, role_required")
                 db.rollback()
                 raise
             except Exception as task_error:
