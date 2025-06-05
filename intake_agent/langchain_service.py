@@ -5,7 +5,7 @@ from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import InMemorySaver
 import os
 from dotenv import load_dotenv
-from clara_pm.shared.models import create_task, SessionLocal, delete_task, get_tasks
+from shared.models import create_task, SessionLocal, delete_task, get_tasks
 from datetime import datetime
 from intake_agent.logger import db_logger, agent_logger
 
