@@ -7,7 +7,7 @@ import os
 from dotenv import load_dotenv
 from shared.models import create_task, SessionLocal, delete_task, get_tasks
 from datetime import datetime
-from intake_agent.logger import db_logger, agent_logger
+from logger import db_logger, agent_logger
 
 # Load environment variables from .env file
 load_dotenv()

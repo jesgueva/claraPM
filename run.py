@@ -4,7 +4,7 @@ Run script for Clara Project Manager API
 """
 
 from intake_agent.server import run_server
-from intake_agent.logger import system_logger
+from logger import system_logger
 
 if __name__ == "__main__":
     system_logger.info("Starting Clara PM from run script")

@@ -1,7 +1,7 @@
 """
 Test script to verify database access and task retrieval.
 """
-from clara_pm.shared.models import SessionLocal, get_tasks
+from shared.models import SessionLocal, get_tasks
 
 def test_retrieve_tasks():
     """Test retrieving tasks from the database."""

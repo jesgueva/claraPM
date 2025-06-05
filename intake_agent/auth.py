@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from typing import Optional, Dict, Any
 from pydantic import BaseModel
 import os
-from intake_agent.logger import system_logger
+from logger import system_logger
 
 # Configure password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

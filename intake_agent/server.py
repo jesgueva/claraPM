@@ -7,7 +7,7 @@ from intake_agent.auth import (
     get_current_active_user, ACCESS_TOKEN_EXPIRE_MINUTES, users_db
 )
 from datetime import timedelta
-from intake_agent.logger import system_logger
+from logger import system_logger
 
 def create_app():
     """Create and configure the FastAPI application."""

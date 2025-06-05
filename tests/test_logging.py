@@ -11,7 +11,7 @@ import re
 # Add the parent directory to the path so we can import the intake_agent module
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from intake_agent.logger import db_logger, conversation_logger, agent_logger, system_logger
+from logger import db_logger, conversation_logger, agent_logger, system_logger
 import logging
 
 def test_all_loggers():

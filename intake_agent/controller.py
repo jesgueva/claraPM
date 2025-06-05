@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
 from intake_agent.langchain_service import agent
-from intake_agent.logger import conversation_logger, system_logger
+from logger import conversation_logger, system_logger
 from intake_agent.auth import (
     Token, User, authenticate_user, create_access_token, 
     get_current_active_user, users_db, ACCESS_TOKEN_EXPIRE_MINUTES
